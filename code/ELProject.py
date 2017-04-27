@@ -9,7 +9,8 @@ import random
 import json
 from collections import defaultdict
 from time import strftime
- 
+#EL Spring 2017 Project
+#Group Members: Jason Goodman, Karen Ho, Kevyn Martinez
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 temp_sensor = '/sys/bus/w1/devices/w1_bus_master1/28-051691cfceff/w1_slave'
