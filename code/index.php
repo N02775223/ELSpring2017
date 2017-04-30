@@ -36,10 +36,10 @@
                         	<p>Making sure your plants don't die since 2017.</p>
 <?php
 $server = "localhost"; 
-$username = "root";
-$password = "password";
-$db = "N02775223";
-//N022775223 is the name of the database I created
+$username = "goodmanj3";
+$password = "uduoc6";
+$db = "goodmanj3_db";
+
 // Create connection
 $conn = mysqli_connect($server, $username, $password, $db);
 
