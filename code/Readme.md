@@ -71,7 +71,16 @@ chmod +x Wyvern.sh
 chmod +x Wyvern2.sh
 ```
 
-**##Step 5: Editing the Scripts**
+**##Step 5: Transfering Files to Your Webserver**
+```
+Install Filezilla
+Connect to the Wyvern webserver through filezilla
+Create a WWW folder
+Extract the contents of the website from you local computer and put it into the WWW file through Filezilla
+Go to http://cs.newpaltz.edu/~YOUR_ACCOUNT_HERE/
+```
+
+**##Step 6: Editing the Scripts**
 
 You will need to insert your information into the following scripts-
 ```
@@ -80,9 +89,12 @@ Expect.exp -Enter information related to your New Paltz account
 Run.sh -Enter information related to your local MySQL database
 Wyvern.sh -/home/New Paltz Account/WWW <<< "put /home/pi/Local Directory/Log.sql"
 Wyvern2.sh -Enter information related to your remote MySQL database
+index.php -Enter information related to your local and remote server
 Once enter in all the required information type in-
 ./Expect.exp
 ```
 The script should now be running and inserting the MySQL database to your remote webserver
+
 WARNING: Sometimes these scripts will crash and possibly reveal the password that you entered. Please use extreme caution when using these scripts in a public setting.
 
+If everything goes well then you have succesfully setup your very own temperature sensor environment.
