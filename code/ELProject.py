@@ -13,7 +13,7 @@ from time import strftime
 #Group Members: Jason Goodman, Karen Ho, Kevyn Martinez
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
-temp_sensor = '/sys/bus/w1/devices/w1_bus_master1/28-051691cfceff/w1_slave'
+temp_sensor = '/sys/bus/w1/devices/w1_bus_master1/XX-XXXXXX/w1_slave' #Look into /sys/bus/w1/devices for your temperature probe
 GPIO.setmode(GPIO.BCM)
 
 moisture = 2
@@ -24,10 +24,12 @@ GPIO.setup(pin, GPIO.IN)
 GPIO.setup(24,GPIO.OUT)
  
 #Connects to the database
-db = MySQLdb.connect(host="localhost", user="root",passwd="password", db="N02775223")
+#IMPORTANT: Change the host, user, password, and db values to reflect your setup
+db = MySQLdb.connect(host="localhost", user="root",passwd="password", db="some_database")
 cur = db.cursor()
 
- 
+#This method reads in the current temperature from the temperature probe
+#This method only utilizes the temperature probe, not the DHT_22 sensor
 def tempRead():
     t = open(temp_sensor, 'r')
     lines = t.readlines()
@@ -46,7 +48,7 @@ def run(t):
         time.sleep(times[t])
         GPIO.output(24,False)
 
-
+#Initializes the values for the motor
 def init_Dict():
         for x in range(10):
                 times[x] = x
@@ -54,6 +56,7 @@ def init_Dict():
 
 #'1' indicates that there is no moisture
 #'0' indicates that there is moisture.
+#This method simply returns what the moisture sensor is currently detecting                
 def getMoisture(pin):
     global moisture
     moisture = GPIO.input(pin)
@@ -71,8 +74,10 @@ def updateJSONFile(): #Reads and writes a count variable to a JSON file
     with open("count.json", "w") as data_file:
         json.dump(data, data_file)
 
+#This is responsible for inserting the values into the table of your local MySQL database
+#Please rename 'some_Log' to whatever your named your table as 
 def insertSQL(datetimeWrite,temp,humidity,moisture):
-    sql = ("""INSERT INTO Log (datetime, temperature, humidity, moisture) VALUES (%s,%s,%s,%s)""",(datetimeWrite,temp,humidity,moisture))
+    sql = ("""INSERT INTO some_Log (datetime, temperature, humidity, moisture) VALUES (%s,%s,%s,%s)""",(datetimeWrite,temp,humidity,moisture))
     try:
         print "Writing to database..."
         cur.execute(*sql)
@@ -104,8 +109,8 @@ def Main():
 while True:
 
     Main()
-    GPIO.cleanup()
-    if shouldBreak:
+    GPIO.cleanup() #Cleans up the GPIO pins
+    if shouldBreak: #If true, the program will break. False the program will continue running (not recommended)
         break
     
 

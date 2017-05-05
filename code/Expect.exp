@@ -1,8 +1,5 @@
 #!/usr/bin/expect
 spawn "./Run.sh"
-#expect "Enter password:"
-#send "[PASSWORD]\r"
-#interact
 spawn "./Wyvern.sh"
 expect "XXXXXX@wyvern.cs.newpaltz.edu's password:"
 send "[PASSWORD]\r"

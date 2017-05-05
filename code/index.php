@@ -38,7 +38,7 @@
 $server = "localhost"; 
 $username = "root";
 $password = "password";
-$db = "N02775223";
+$db = "some_database";
 
 // Create connection
 $conn = mysqli_connect($server, $username, $password, $db);
