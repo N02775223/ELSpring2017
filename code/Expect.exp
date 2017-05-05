@@ -7,7 +7,7 @@ spawn "./Wyvern.sh"
 expect "XXXXXX@wyvern.cs.newpaltz.edu's password:"
 send "[PASSWORD]\r"
 interact
-spawn "./Wyvern3.sh"
+spawn "./Wyvern2.sh"
 expect "XXXXXX@wyvern.cs.newpaltz.edu's password:"
 send "[PASSWORD]\r"
 interact

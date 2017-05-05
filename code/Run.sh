@@ -1,4 +1,4 @@
 #!/bin/bash
-mysqldump -u root -p[PASSWORD] --skip-opt --no-create-info [DATABASE]  > Log.sql
+mysqldump -u [USER] -p[PASSWORD] --skip-opt --add-drop-table --skip-extended-insert --skip-add-locks [DATABASE]  > Log.sql
 
 
